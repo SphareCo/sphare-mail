@@ -1,4 +1,32 @@
 #include "../include/smail/Server.h"
 #include <ws2tcpip.h>
+#include "Server.h"
 
+namespace smail
+{
+    Server::Server()
+    {
 
+        WSADATA wsaData;
+        int wsaErr = WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+        if (wsaErr != 0)
+        {
+            std::cerr << "[Error] Winsock initialization failed";
+            exit(1);
+        }
+
+        serverSocket = INVALID_SOCKET;
+        std::cout << "[LOG] Server Instance created & Winsock intialized." << std::endl;
+    }
+
+    Server::~Server(){
+        closesocket(serverSocket);
+        WSACleanup();
+        std::cout<<"[LOG] Server Instance close successfully"<<std::endl;
+    }
+
+    void Server::run(int port){
+        
+    }
+}

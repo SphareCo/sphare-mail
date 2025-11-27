@@ -16,7 +16,6 @@ namespace smail
         SOCKET serverSocket;
 
     public:
-
         // Constructor: when server will create
         Server();
 
