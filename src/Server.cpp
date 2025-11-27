@@ -27,6 +27,10 @@ namespace smail
     }
 
     void Server::run(int port){
-        
+        serverSocket = socket(AF_INET,SOCK_STREAM, 0);
+        if(serverSocket == INVALID_SOCKET){
+            std::cerr<<"[Error] Not able to create Socket connection "<<std::endl;
+            return;
+        }
     }
 }
