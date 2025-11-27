@@ -4,8 +4,10 @@
 
 namespace smail
 {
+    // constructor 
     Server::Server()
     {
+        // winsock initialization
 
         WSADATA wsaData;
         int wsaErr = WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -20,12 +22,15 @@ namespace smail
         std::cout << "[LOG] Server Instance created & Winsock intialized." << std::endl;
     }
 
+    // destructor
     Server::~Server(){
         closesocket(serverSocket);
+        // cleanup function
         WSACleanup();
         std::cout<<"[LOG] Server Instance close successfully"<<std::endl;
     }
 
+    // socket formation
     void Server::run(int port){
         serverSocket = socket(AF_INET,SOCK_STREAM, 0);
         if(serverSocket == INVALID_SOCKET){
