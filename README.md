@@ -13,17 +13,13 @@
 ## HOW TO BUILD :
 `Ensure you have MinGW/G++ installed.`
 
-**Step-1:**
-```sh
-cd src
-```
 
-**Step-2:**
+**Step-1:**
 ```sh
 g++ src/main.cpp src/Server.cpp -o bin/server_test.exe -lws2_32
 ```
 
-**Step-3:**
+**Step-2:**
 ```sh
 ./bin/server_test.exe
 ```
