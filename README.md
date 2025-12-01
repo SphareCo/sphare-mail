@@ -24,9 +24,6 @@ g++ src/main.cpp src/Server.cpp -o bin/server_test.exe -lws2_32
 ./bin/server_test.exe
 ```
 
-
-
-
 ### Open another terminal in VSCode or ouside the VSCode 
 
 Run this command in the 2nd terminal:
