@@ -11,7 +11,6 @@ namespace smail
     // Server class created/
     class Server
     {
-
     private:
         SOCKET serverSocket;
 

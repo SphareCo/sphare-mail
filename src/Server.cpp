@@ -53,9 +53,33 @@ namespace smail
 
         if (bind(serverSocket, (SOCKADDR *)&service, sizeof(service)) == SOCKET_ERROR)
         {
-            std::cerr<<"[ERROR] Bind failed! "<<port<<"might be busy"<<std::endl;
+            std::cerr << "[ERROR] Bind failed! " << port << "might be busy" << std::endl;
             closesocket(serverSocket);
             return;
+        }
+
+        // if(listen(serverSocket,SOMAXCONN)==SOCKET_ERROR){
+        if (listen(serverSocket, 1) == SOCKET_ERROR)
+        {
+            std::cerr << "[ERROR] Listen failed" << std::endl;
+            return;
+        }
+
+        std::cout << "[SUCCESS] SpahreMail (smail) is listening in port " << port << "..." << std::endl;
+
+        SOCKET clientSocket;
+        clientSocket = accept(serverSocket, NULL, NULL);
+
+        if (clientSocket != INVALID_SOCKET)
+        {
+            std::cout << "[INFO] A client connected!" << std::endl;
+
+            // SMTP Greeting bhejo
+            const char *msg = "220 SphareMail v0.1 Service Ready\r\n";
+            send(clientSocket, msg, strlen(msg), 0);
+
+            std::cout << "[INFO] Greeting sent. Closing connection." << std::endl;
+            closesocket(clientSocket);
         }
     }
 }
